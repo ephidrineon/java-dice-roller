@@ -39,8 +39,14 @@ public class rollIt {
             main(null);
     }
 
-    public static void DisplaySyntax() {
-        System.out.println("Use [XdX], X being a number of your choosing. The X before the d says how many dice to roll. The X after the d says how many sides there are to each dice.");
+    public static void DisplaySyntax(String input) {
+        if(input.equals("syn")) {
+            System.out.println("Use [XdX], X being a number of your choosing. The X before the d says how many dice to roll. The X after the d says how many sides there are to each dice.");
+        }
+
+        if(input.equals("err")) {
+            System.out.println("Input has an incorrect format. Use [*d*] to roll a dice, [syn] to view details about the syntax, or [q] to quit the program");
+        }
         main(null);
     }
 
@@ -54,14 +60,14 @@ public class rollIt {
 
     public static boolean VerifySyntax(String userInput) {
         if(userInput.equals("syn")) {
-            DisplaySyntax();
+            DisplaySyntax("syn");
         }
 
         if(!userInput.contains("d")) {
             if(userInput.equals("q") | userInput.equals("Q")) {
                 System.exit(0);
             } else {
-                System.out.println("Input has an incorrect format. Use [*d*] to roll a dice, or [q] to quit the program");
+                DisplaySyntax("err");
                 main(null);
             }
         }
@@ -70,14 +76,14 @@ public class rollIt {
         try {
             int numberOfDice = Integer.parseInt(diceInputElements[0]);
         } catch(java.lang.NumberFormatException e)  {
-            System.out.println("Input has an incorrect format. Use [*d*] to roll a dice, or [q] to quit the program");
+            DisplaySyntax("err");
            return false;
         }
 
         try {
             int diceSides = Integer.parseInt(diceInputElements[1]);
         } catch(java.lang.NumberFormatException e)  {
-            System.out.println("Input has an incorrect format. Use [*d*] to roll a dice, or [q] to quit the program");
+            DisplaySyntax("err");
             return false;
         }
 
