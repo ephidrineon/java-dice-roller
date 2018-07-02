@@ -24,6 +24,7 @@ public class rollIt {
     public static void RollAction(int dVal, int sVal, String rawInput) {
 
         double diceResult = 0;
+        long diceOutput = 0;
 
         String bonusOutput = "";
             int i = 0;
@@ -31,9 +32,8 @@ public class rollIt {
                 diceResult = Math.random() * sVal;
                 i++;
                 bonusOutput += Math.round(diceResult) + " ";
+                diceOutput += Math.round(diceResult);
             }
-
-            long diceOutput = Math.round(diceResult);
 
             System.out.println(rawInput + " = " + diceOutput + ": " + bonusOutput);
             main(null);
